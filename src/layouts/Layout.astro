@@ -101,4 +101,25 @@ const includeNav = Astro.props.includeNav ?? true;
   ::-webkit-scrollbar-thumb:hover {
     background: #535353;
   }
+
+  h1:not(.no):before {
+    content: "⟿";
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+
+  h2:not(.no):before {
+    content: "⇝";
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+
+  h3:not(.no):before,
+  h4:not(.no):before,
+  h5:not(.no):before,
+  h6:not(.no):before {
+    content: "↝";
+    display: inline-block;
+    margin-right: 0.5em;
+  }
 </style>
