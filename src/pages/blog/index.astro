@@ -1,0 +1,188 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Blogpost from "../../components/Blogpost.astro";
+import type { BlogpostData } from "../../data/types";
+
+async function getPosts(): Promise<BlogpostData[]> {
+  const posts = (await Astro.glob("./*.mdx")).map((post) => {
+    const { frontmatter } = post;
+    return {
+      title: frontmatter.title,
+      description: frontmatter.description,
+      date: frontmatter.date,
+      author: frontmatter.author,
+      tags: frontmatter.tags,
+      image: frontmatter.image,
+      filename: frontmatter.filename,
+    };
+  });
+
+  return posts;
+}
+
+const posts = await getPosts();
+---
+
+<Layout title="Blog">
+  <main>
+    <header>
+      <span>Filter</span>
+      <input
+        type="text"
+        placeholder="Search for posts"
+        class="search"
+        id="filter-text"
+      />
+      <select id="sort-by">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="surprise-me">Random</option>
+      </select>
+      <select id="filter-by">
+        <option value="all">All</option>
+      </select>
+    </header>
+
+    <div class="bloglist">
+      {
+        posts.map((post) => (
+          <Blogpost
+            title={post.title}
+            description={post.description}
+            date={post.date}
+            author={post.author}
+            tags={post.tags}
+            image={post.image}
+            filename={post.filename}
+          />
+        ))
+      }
+    </div>
+  </main>
+</Layout>
+
+<!-- Should I use React? YES -->
+<!-- Will I? NO -->
+
+<script>
+  const searchInput = document.getElementById(
+    "filter-text"
+  )! as HTMLInputElement;
+  const sortBySelect = document.getElementById("sort-by")! as HTMLSelectElement;
+  const filterBySelect = document.getElementById(
+    "filter-by"
+  )! as HTMLSelectElement;
+
+  const bloglist = document.querySelector(".bloglist")!;
+
+  const getDateFromPostDate = (postDate: string) => {
+    const [day, month, year] = postDate.split("-");
+    return new Date(
+      parseInt(year, 10),
+      parseInt(month, 10) - 1,
+      parseInt(day, 10)
+    );
+  };
+
+  // Ok I should have used react
+  const posts = Array.from(bloglist.children).map((post) => {
+    const title = post.querySelector(".title a")!.textContent!;
+    const description = post.querySelector(".description")!.textContent!;
+    const author = post.querySelector(".author")!.textContent!;
+    const date = post.querySelector(".date")!.textContent!;
+    const tags = Array.from(post.querySelector(".tags")!.children).map(
+      (tag) => tag.textContent!
+    );
+
+    return {
+      title,
+      description,
+      author,
+      date: getDateFromPostDate(date),
+      tags,
+      elementCopy: post.cloneNode(true),
+    };
+  });
+
+  // TODO: remove rerendering of all posts
+  const updatePosts = () => {
+    const searchValue = searchInput.value;
+    const sortByValue = sortBySelect.value;
+    const filterByValue = filterBySelect.value;
+
+    const filteredPosts = posts.filter((post) => {
+      const titleMatch = post.title
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+      const descriptionMatch = post.description
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+      const filterMatch =
+        filterByValue === "all" || post.tags.includes(filterByValue);
+      return (titleMatch || descriptionMatch) && filterMatch;
+    });
+
+    const sortedPosts = filteredPosts.sort((a, b) => {
+      if (sortByValue === "newest") {
+        return b.date.getTime() - a.date.getTime();
+      } else if (sortByValue === "oldest") {
+        return a.date.getTime() - b.date.getTime();
+      } else {
+        return Math.random() - 0.5;
+      }
+    });
+
+    bloglist.innerHTML = "";
+    sortedPosts.forEach((post) => {
+      bloglist.appendChild(post.elementCopy.cloneNode(true));
+    });
+  };
+
+  searchInput.addEventListener("input", (_) => {
+    updatePosts();
+  });
+  sortBySelect.addEventListener("change", (_) => {
+    updatePosts();
+  });
+  filterBySelect.addEventListener("change", (_) => {
+    updatePosts();
+  });
+</script>
+
+<style>
+  header {
+    margin-bottom: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+
+  input {
+    background-color: var(--bg);
+    border: 1px solid var(--text);
+    border-color: #464646;
+    color: var(--text);
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: var(--text);
+  }
+
+  select {
+    background-color: var(--bg);
+    border: 1px solid var(--text);
+    border-color: #464646;
+    color: var(--text);
+    padding: 0.25em;
+    border-radius: 0.25em;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--text);
+  }
+</style>

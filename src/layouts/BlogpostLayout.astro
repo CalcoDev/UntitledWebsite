@@ -1,0 +1,17 @@
+---
+import Layout from "./Layout.astro";
+import type { BlogpostData } from "../data/types";
+
+const { frontmatter } = Astro.props;
+
+const data = frontmatter as BlogpostData;
+---
+
+<Layout title={frontmatter.title}>
+  <!-- <code>
+    {JSON.stringify(data, null, 2)}
+  </code> -->
+  <main>
+    <slot />
+  </main>
+</Layout>

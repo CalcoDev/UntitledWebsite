@@ -1,0 +1,104 @@
+---
+import type { BlogpostData } from "../data/types";
+interface Props extends BlogpostData {}
+
+const props = Astro.props;
+---
+
+<article>
+  <div class="left">
+    <header>
+      <h1 class="title">
+        <a href={"/blog/" + props.filename}>{props.title}</a>
+      </h1>
+      <span class="date">{props.date}</span>
+    </header>
+    <p class="description">{props.description}</p>
+    <footer>
+      <p class="author">Written by {props.author}</p>
+      <li class="tags">
+        {props.tags.map((tag) => <a href={`/blog/tags/${tag}`}>{tag}</a>)}
+      </li>
+    </footer>
+  </div>
+  <div class="right">
+    <img class="img" src={`/blog/${props.image}`} alt={props.title} />
+  </div>
+</article>
+
+<style>
+  .author {
+    margin: 0;
+    padding: 0;
+    margin-right: 0.5em;
+  }
+
+  footer {
+    display: flex;
+    align-items: baseline;
+    opacity: 50%;
+  }
+
+  .tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.5em;
+  }
+
+  .tags a {
+    text-decoration: none;
+    border: 0.1em solid var(--text);
+    padding: 0.2em 0.5em;
+    border-radius: 0.1em;
+
+    transition:
+      all 0.2s,
+      color 0.2s;
+  }
+
+  .tags a:hover {
+    background-color: var(--text);
+    color: var(--bg);
+  }
+
+  article {
+    min-height: 100px;
+    margin-bottom: 2em;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .title {
+    margin: 0;
+    padding: 0;
+    margin-right: 0.5em;
+  }
+
+  .date {
+    opacity: 50%;
+    font-style: italic;
+  }
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    right: 0;
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 0.1em solid var(--text);
+  }
+</style>

@@ -1,51 +1,94 @@
 ---
+import Navigation from "../components/Navigation.astro";
+
 interface Props {
   title: string;
+  includeNav?: boolean;
 }
 
 const { title } = Astro.props;
+const includeNav = Astro.props.includeNav ?? true;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Untitled Website" />
+    <meta name="description" content="Untitled Company's homeplace." />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>Untitled Website {title != null && `- ${title}`}</title>
   </head>
   <body>
+    {includeNav && <Navigation />}
     <slot />
   </body>
 </html>
 <style is:global>
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
-    );
+    --bg: #1d1d1f;
+    --text: #e3e3e3;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  a:hover {
+    color: #e1e1e1;
+    text-decoration: underline;
+  }
+
   html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
   }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+
+  body {
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 2em;
+  }
+
+  main section:not(:last-of-type) {
+    margin-bottom: 2em;
+  }
+
+  main section h2 {
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  /* Track styles */
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #acacac;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #535353;
   }
 </style>

@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Employees" includeNav={false}>
+  <div class="exit">
+    <h3>Click <a href="/">here</a> to exit.</h3>
+  </div>
+
+  <img src="/smash_heroes.png" alt="Smash Heroes" />
+</Layout>
+
+<style>
+  html {
+    overflow: hidden;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .exit {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+
+    background-color: var(--bg);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.25rem;
+    border: 0.1em solid var(--text);
+  }
+
+  .exit * {
+    padding: 0;
+    margin: 0;
+  }
+</style>

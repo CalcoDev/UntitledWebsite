@@ -1,0 +1,46 @@
+---
+interface Props {}
+---
+
+<nav>
+  <div class="logo">
+    <h1><a href="/">Untitled <br /> Company</a></h1>
+  </div>
+  <div class="links">
+    <a href="/employees">Employees</a>
+    <a href="/projects">Projects</a>
+    <a href="/blog">Blog</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo h1 {
+    line-height: 1.5;
+  }
+
+  .links {
+    flex: 1;
+  }
+
+  .links a {
+    text-decoration: none;
+    color: var(--text);
+
+    float: right;
+    margin-left: 4rem;
+  }
+
+  .links a:hover {
+    color: #e1e1e1;
+    text-decoration: underline;
+  }
+</style>
