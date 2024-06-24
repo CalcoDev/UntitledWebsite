@@ -1,5 +1,6 @@
 ---
 import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -23,6 +24,7 @@ const includeNav = Astro.props.includeNav ?? true;
   <body>
     {includeNav && <Navigation />}
     <slot />
+    {includeNav && <Footer />}
   </body>
 </html>
 <style is:global>
@@ -43,6 +45,14 @@ const includeNav = Astro.props.includeNav ?? true;
   a:hover {
     color: #e1e1e1;
     text-decoration: underline;
+  }
+
+  a.alt {
+    text-decoration: underline;
+  }
+
+  a.alt:hover {
+    text-decoration: overline;
   }
 
   html {

@@ -39,15 +39,22 @@ import Layout from "../layouts/Layout.astro";
             >world domination</b
           >.
         </p>
-
-        <p>
-          Next up, <b>Obeya</b>.
-        </p>
-
         <div class="source">The College Obeya - Mewoooo (paraphrased)</div>
       </blockquote>
 
-      <p>Untitled company was founded</p>
+      <p>
+        Untitled company was founded by Employer Employer himself,
+        <b>Tudyslaier</b>, on a rigurous interviewing process<sup
+          >(see quote 1)</sup
+        >. Only the most elite employees, with the most relevant, up to date,
+        and interesting portfolios pass the interviewing process, and only the
+        even more skillful actually get hired.
+      </p>
+      <p>
+        For more information, see the <a class="alt" href="/employees"
+          >employees</a
+        > page.
+      </p>
     </section>
 
     <section>
@@ -56,88 +63,174 @@ import Layout from "../layouts/Layout.astro";
         The Obeya is where most of this company's work happens. It is where the
         harpers harp, where the minstrels sing, and where the trumpets ring.
       </p>
+
+      <p>
+        In other words, so far, the Obeya is a Discord call in which all of our
+        work is done. Be it alone work, game jams or even Letters Leagues, we
+        are always mentaly in the Obeya.
+      </p>
+
+      <h3>
+        The Rules of the Obeya
+        <span class="obeya-addon">
+          from
+          <a href="https://en.wikipedia.org/wiki/Obeya">Wikipedia</a></span
+        >
+      </h3>
+
+      <p>Mindset</p>
+      <ol start="1">
+        <li>
+          People come together in the Obeya to respectfully see, learn & act on
+          vital information
+        </li>
+        <li>
+          People are committed to engage in continuous improvement, resolving
+          obstacles along the way
+        </li>
+      </ol>
+
+      <p>Alignment</p>
+      <ol start="3">
+        <li>In the Obeya, we communicate a strong sense of purpose</li>
+        <li>
+          Purpose is recognizably tied to our organizational strategy through
+          meaningful objectives
+        </li>
+        <li>
+          The Obeya connects strategy to execution with visible orientation on
+          customer experience
+        </li>
+        <li>
+          The Obeya meetings have a rhythm in sync with the operational
+          heartbeat of the organization
+        </li>
+      </ol>
+
+      <p>Workspace</p>
+      <ol start="7">
+        <li>
+          The Obeya visuals provide a logical and practical information and
+          conversation flow
+        </li>
+        <li>
+          The Obeya reflects a good understanding of the flow of work from start
+          to delivery
+        </li>
+        <li>
+          The Obeya is an attractive and available area, in proximity to the
+          workfloor
+        </li>
+      </ol>
+
+      <p>Content</p>
+      <ol start="10">
+        <li>
+          In the Obeya, we use analytics-driven-evidence to make business
+          decisions.
+        </li>
+        <li>
+          Data owners ensure information is easy to consume, readily available,
+          up to date, and visually attractive
+        </li>
+      </ol>
+
+      <p>Custom</p>
+      <ol start="13">
+        <li><h4>No samsung alarm<h4></h4></h4></li>
+      </ol>
+
+      <div class="source"></div>
+    </section>
+
+    <section>
+      <h2>This Website</h2>
+      <p>
+        This website is our attempt at bridging the gap between us, the Obeya
+        and <i>the Public<sup>TM</sup></i>.
+      </p>
     </section>
   </main>
+
+  <style>
+    .obeya-addon {
+      font-size: 0.5em;
+      opacity: 0.5;
+      font-style: italic;
+    }
+
+    blockquote {
+      border-left: 0.1em solid var(--text);
+      margin: 1.5em 10px;
+      padding: 0em 10px;
+      font-style: italic;
+      color: #e3e3e3;
+      quotes: "“" "”" "‘" "’";
+    }
+
+    blockquote .source {
+      margin: 0.5em;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 0.8em;
+      text-align: right;
+    }
+
+    blockquote p {
+      margin: 0.5em;
+    }
+
+    blockquote:not(.armstrong-quote) p:first-of-type::before {
+      content: open-quote;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    blockquote:not(.armstrong-quote) p:last-of-type::after {
+      content: close-quote;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote line:not(:last-of-type) {
+      margin-bottom: 2em;
+      display: block;
+    }
+
+    .armstrong-quote .employer p::before {
+      content: "Employer: ";
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote .employer:first-of-type p:first-child::before {
+      content: open-quote "Employer: ";
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote .employee:first-of-type p:first-child::before {
+      content: open-quote "Employee: ";
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote .employee p::before {
+      content: "Employee: ";
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote .employer:last-of-type p:last-child::after {
+      content: close-quote;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+
+    .armstrong-quote .employee:last-child p:last-child::after {
+      content: close-quote;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+  </style>
 </Layout>
-
-<style>
-  .obeya-addon {
-    font-size: 0.5em;
-    opacity: 0.5;
-    font-style: italic;
-  }
-
-  blockquote {
-    border-left: 0.1em solid var(--text);
-    margin: 1.5em 10px;
-    padding: 0em 10px;
-    font-style: italic;
-    color: #e3e3e3;
-    quotes: "“" "”" "‘" "’";
-  }
-
-  blockquote .source {
-    margin: 0.5em;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 0.8em;
-    text-align: right;
-  }
-
-  blockquote p {
-    margin: 0.5em;
-  }
-
-  blockquote:not(.armstrong-quote) p:first-of-type::before {
-    content: open-quote;
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  blockquote:not(.armstrong-quote) p:last-of-type::after {
-    content: close-quote;
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote line:not(:last-of-type) {
-    margin-bottom: 2em;
-    display: block;
-  }
-
-  .armstrong-quote .employer p::before {
-    content: "Employer: ";
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote .employer:first-of-type p:first-child::before {
-    content: open-quote "Employer: ";
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote .employee:first-of-type p:first-child::before {
-    content: open-quote "Employee: ";
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote .employee p::before {
-    content: "Employee: ";
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote .employer:last-of-type p:last-child::after {
-    content: close-quote;
-    font-weight: bold;
-    opacity: 0.5;
-  }
-
-  .armstrong-quote .employee:last-child p:last-child::after {
-    content: close-quote;
-    font-weight: bold;
-    opacity: 0.5;
-  }
-</style>

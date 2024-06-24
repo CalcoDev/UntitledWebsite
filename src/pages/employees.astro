@@ -4,13 +4,21 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Employees" includeNav={false}>
   <div class="exit">
-    <h3>Click <a href="/">here</a> to exit.</h3>
+    <h3>Click <a class="alt" href="/">here</a> to exit.</h3>
   </div>
 
   <img src="/smash_heroes.png" alt="Smash Heroes" />
 </Layout>
 
 <style>
+  h3 {
+    font-weight: normal;
+  }
+
+  h3 a {
+    font-weight: bold;
+  }
+
   html {
     overflow: hidden;
   }
