@@ -1,9 +1,82 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ProjectIsland from "../components/ProjectIsland.astro";
+
+import { projects } from "../data/projects";
 ---
 
 <Layout title="Projects">
   <main>
-    <h1>el project</h1>
+    <ol class="sort-tabs">
+      <li class="active">All</li>
+      <li>Status</li>
+      <li>Members</li>
+      <li>Category</li>
+      <li>Custom</li>
+    </ol>
+
+    <div class="project-islands-container">
+      <!-- NEED REACT HERE -->
+      <!-- <ProjectIsland /> -->
+    </div>
   </main>
 </Layout>
+
+<script>
+  const tabs = document.querySelectorAll(".sort-tabs li");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+    });
+  });
+</script>
+
+<style>
+  .sort-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--text);
+  }
+
+  .sort-tabs li:last-child {
+    margin-left: 1em;
+  }
+
+  .sort-tabs li {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text);
+    border-bottom: none;
+    border-radius: 0.2rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    cursor: pointer;
+
+    transform-origin: bottom center;
+
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      scale 0.2s;
+  }
+
+  .sort-tabs li:hover {
+    background-color: var(--text);
+    color: var(--bg);
+  }
+
+  .sort-tabs li.active {
+    background-color: var(--text);
+    color: var(--bg);
+  }
+
+  .sort-tabs li:not(.active) {
+    scale: 0.8;
+    border-width: 2px;
+  }
+</style>
