@@ -1,0 +1,39 @@
+.container {
+  /* border: 1px solid var(--text); */
+  border-radius: 0.2em;
+
+  margin-bottom: 1em;
+  padding: 1em;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2em;
+}
+
+.title {
+  margin: 0;
+  margin-left: 0.5em;
+
+  letter-spacing: 0.1em;
+  font-size: 2em;
+
+  background: var(--bg);
+  color: var(--bg);
+
+  text-shadow: -1px -1px 0 var(--text), 1px -1px 0 var(--text),
+    -1px 1px 0 var(--text), 1px 1px 0 var(--text);
+
+  transition: background 0.2s, color 0.2s, text-shadow 0.2s, letter-spacing 0.2s;
+
+  user-select: none;
+}
+
+.title:hover {
+  background: var(--bg);
+  color: var(--text);
+
+  letter-spacing: 0.2em;
+
+  text-shadow: -1px -1px 0 var(--bg), 1px -1px 0 var(--bg), -1px 1px 0 var(--bg),
+    1px 1px 0 var(--bg);
+}

@@ -25,8 +25,8 @@ const posts = await getPosts();
 
 <Layout title="Blog">
   <main>
+    <span>Filter</span>
     <header>
-      <span>Filter</span>
       <input
         type="text"
         placeholder="Search for posts"
@@ -150,12 +150,18 @@ const posts = await getPosts();
 </script>
 
 <style>
+  main span {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
   header {
     margin-bottom: 3em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1em;
+    gap: 0.2em;
   }
 
   input {

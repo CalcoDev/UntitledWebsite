@@ -1,0 +1,98 @@
+.container {
+  border-radius: 0.2em;
+  margin-bottom: 1em;
+  padding: 0.1em;
+  width: 100%;
+  height: 350px;
+  position: relative;
+  transition: outline 0.2s;
+}
+
+/* LMFAO what the frick is this fix :skull: */
+.container * {
+  opacity: 0.99999;
+}
+
+.border-helper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+
+  /* translate: -50%; */
+  transform: translate(-50%, -50%);
+
+  border-radius: 0.2em;
+  box-sizing: content-box;
+
+  transform-origin: center middle;
+
+  transition: padding 0.2s, border 0.2s;
+  padding: 0em;
+  border: 4px solid var(--bg);
+}
+
+.border-helper.active {
+  padding: 1em;
+  border: 4px solid var(--text);
+}
+
+.description {
+  text-align: center;
+}
+
+.header {
+  margin-top: 0.2em;
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 0.2em;
+  position: relative;
+  height: 66%;
+  width: 100%;
+
+  top: 0;
+
+  transition: top 0.2s;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: top 0.2s;
+}
+
+.image-container:hover {
+  top: -8px;
+}
+
+.information {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0;
+}
+
+.left h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.date {
+  opacity: 0.5;
+  font-style: italic;
+}
