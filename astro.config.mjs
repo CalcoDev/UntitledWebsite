@@ -13,5 +13,7 @@ export default defineConfig({
         'react-dom': 'preact/compat',
       }
     }
-  }
+  },
+  site: 'https://calcopod.github.io',
+  base: '',
 });
