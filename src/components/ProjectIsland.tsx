@@ -8,7 +8,7 @@ interface Props extends ProjectIslandData {}
 export default function ProjectIsland({ projects, title }: Props) {
   return (
     <>
-      <h1 class={`${Styles.title} no`}>{title}</h1>
+      <h2 class={`${Styles.title} no`}>{title}</h2>
       <div class={Styles.container}>
         {projects.map((project) => (
           <ProjectCard {...project} />

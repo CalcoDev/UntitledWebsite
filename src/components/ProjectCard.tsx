@@ -25,9 +25,9 @@ export default function ProjectCard(data: Props) {
       <header class={Styles.header}>
         <div class={Styles.information}>
           <div class={Styles.left}>
-            <h1 class="no">
+            <h2 class="no">
               <a href={"/projects/" + data.filename}>{data.title}</a>
-            </h1>
+            </h2>
             <span class={Styles.date}>{data.date}</span>
           </div>
           <span>{data.authors.join(" ")}</span>
