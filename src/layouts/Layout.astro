@@ -1,6 +1,7 @@
 ---
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+import TudyjamInvitation from "../components/TudyjamInvitation.astro";
 
 interface Props {
   title: string;
@@ -22,9 +23,12 @@ const includeNav = Astro.props.includeNav ?? true;
     <title>Untitled Website {title != null && `- ${title}`}</title>
   </head>
   <body>
-    {includeNav && <Navigation />}
-    <slot />
-    {includeNav && <Footer />}
+    {includeNav && <TudyjamInvitation />}
+    <div class="over-container">
+      {includeNav && <Navigation />}
+      <slot />
+      {includeNav && <Footer />}
+    </div>
   </body>
 </html>
 <style is:global>
@@ -74,6 +78,9 @@ const includeNav = Astro.props.includeNav ?? true;
     margin-right: auto;
 
     margin-top: 2em;
+
+    /* background: var(--bg); */
+    background: #1d1d1fb9;
   }
 
   main section:not(:last-of-type) {
