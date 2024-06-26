@@ -2,86 +2,79 @@
 interface Props {}
 ---
 
-<div class="strip left">
-  {
-    [1, 2, 3, 4, 5, 6].map((_) => (
-      <a class="alt" href="/tudyjam">
-        <img
-          src="/tudyjam/dont_tudyjam_at_3_am.png"
-          alt="Tudyjam invitation card"
-        />
-      </a>
-    ))
-  }
-</div>
-<div class="strip right">
-  {
-    [1, 2, 3, 4, 5, 6].map((_) => (
-      <a class="alt" href="/tudyjam">
-        <img
-          class="invitation"
-          src="/tudyjam/dont_tudyjam_at_3_am.png"
-          alt="Tudyjam invitation card"
-        />
-      </a>
-    ))
-  }
-</div>
+<a class="alt invit" href="/tudyjam">
+  <img
+    class="invitation"
+    src="/tudyjam/dont_tudyjam_at_3_am.png"
+    alt="Tudyjam invitation card"
+  />
+</a>
 
 <!-- Randomly offset the tudyjams -->
 <script>
-  let window_height = window.innerHeight;
-  let left = document.querySelector(".left")!;
-  let right = document.querySelector(".right")!;
-  left.style.top = Math.ceil(Math.random() * window_height * 0.5) + "px";
-  right.style.top = Math.ceil(Math.random() * window_height * 0.5) + "px";
+  let e = document.querySelector("a.invit")!;
+
+  const moveToRandomX = () => {
+    e.style.left =
+      Math.ceil(
+        Math.random() * (window.innerWidth - e.getBoundingClientRect().width)
+      ) + "px";
+  };
+  const moveToRandomY = () => {
+    e.style.top =
+      window.scrollY +
+      Math.ceil(
+        Math.random() * (window.innerHeight - e.getBoundingClientRect().height)
+      ) +
+      "px";
+  };
+
+  moveToRandomX();
+  moveToRandomY();
+
+  const moveToRandomPos = () => {
+    moveToRandomX();
+    moveToRandomY();
+  };
 
   const checkWindowSize = () => {
-    if (window.innerWidth < 952) {
-      right.style.top += window_height * 0.5;
+    let rect = e.getBoundingClientRect();
+    console.log(rect.x, rect.width, window.innerWidth);
+    if (
+      rect.right > window.innerWidth ||
+      rect.left < 0 ||
+      rect.top < 0 ||
+      rect.bottom > window.innerHeight
+      //   false
+    ) {
+      moveToRandomPos();
+    }
+  };
+
+  const elemScroll = () => {
+    let rect = e.getBoundingClientRect();
+    if (rect.top < 0 || rect.bottom > window.innerHeight) {
+      moveToRandomPos();
     }
   };
 
   window.addEventListener("resize", checkWindowSize);
+  window.addEventListener("scroll", elemScroll);
 </script>
 
 <style>
-  .left a {
+  a {
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    pointer-events: auto;
-  }
-
-  .right a {
-    position: absolute;
-    top: 0;
-    right: 0;
     z-index: 1;
-    width:;
-    max-width: 100vw;
+
+    transition: scale 0.1s;
   }
 
   img {
     max-width: 100vw;
   }
 
-  .strip {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 60vh;
-  }
-
-  .left {
-    position: absolute;
-    left: 0;
-  }
-
-  .right {
-    position: absolute;
-    right: 0;
-    float: right;
+  a:hover {
+    scale: 0.9;
   }
 </style>
