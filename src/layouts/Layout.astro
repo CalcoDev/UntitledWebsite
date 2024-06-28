@@ -23,12 +23,10 @@ const includeNav = Astro.props.includeNav ?? true;
     <title>Untitled Website {title != null && `- ${title}`}</title>
   </head>
   <body>
-    {includeNav && <TudyjamInvitation />}
-    <div class="over-container">
-      {includeNav && <Navigation />}
-      <slot />
-      {includeNav && <Footer />}
-    </div>
+    <!-- {includeNav && <TudyjamInvitation />} -->
+    {includeNav && <Navigation />}
+    <slot />
+    {includeNav && <Footer />}
   </body>
 </html>
 <style is:global>
